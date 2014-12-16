@@ -1,6 +1,7 @@
 # Bakery Examples
 
-Here you will find several examples illustrating how to use the [Bakery from CloudNative](https://cloudnative.io/).
+Here you will find examples illustrating how to use the [Bakery from CloudNative](https://cloudnative.io/).
+
 
 ## Usage
 
@@ -9,16 +10,19 @@ Here you will find several examples illustrating how to use the [Bakery from Clo
 1.  Under the Bakery, add a new __Git Repository__ with the following details:
 
     Name: `Bakery Examples`
+    
     Clone URL: `https://github.com/cloudnative/examples-ansible.git`
+    
     Website URL: `https://github.com/cloudnative/examples-ansible`
     
 You can now use any of the examples below when creating a build pipeline.
+
 
 ## Examples
 
 ### Hello World
 
-This is as basic as it gets. The `hello-world.yml`(https://github.com/cloudnative/bakery-examples/blob/master/hello-world.yml) file is an [Ansible](https://github.com/ansible/ansible) playbook that installs the Apache web server. That's it.
+This is as basic as it gets. The [`hello-world.yml`](https://github.com/cloudnative/bakery-examples/blob/master/hello-world.yml) file is an [Ansible](https://github.com/ansible/ansible) playbook that installs the Apache web server. That's it.
 
 To use:
 
@@ -41,9 +45,16 @@ The Bakery is a an Amazon Machine Image (AMI) factory. Whenever your code change
 
 Why? Well that is really a matter of preference. Some (e.g. Netflix) like to build fully configured images containing their latest code, and use the same image for staging and promote it to production after testing. Others like to build an image containing just the dependencies for running their service, and get the code on boot (e.g. build an image with Ruby, Rails, and Nginx already installed and configured). You could even build an AMI containing a Docker image, so that when you launch 100 instances, they aren't all downloading the same Docker image on boot. The point is, it is a simple little factory, and how you want to use it is up to you.
 
+
 ## About CloudNative
 
 [CloudNative](https://cloudnative.io/) is the interface between developers, operations and cloud. Our mission is to codify the best practices of running a service on Amazon Web Services. We do this by building native to AWS (i.e. no abstractions - take advantage of advanced features), staying current with changing best practices, and striking a balance between being opinionated vs flexible.
+
+
+## Contributing
+
+Want to fix a typo, or make an example run on your favorite OS? Fantastic! Just fork this repository and send us a Pull Request.
+
 
 ## License
 
