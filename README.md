@@ -9,11 +9,9 @@ Here you will find examples illustrating how to use the [Bakery from CloudNative
 1.  Go to your organization's dashboard
 1.  Under the Bakery, add a new __Git Repository__ with the following details:
 
-    Name: `Bakery Examples`
-    
-    Clone URL: `https://github.com/cloudnative/examples-ansible.git`
-    
-    Website URL: `https://github.com/cloudnative/examples-ansible`
+        Name:  Bakery Examples
+        Clone URL:  https://github.com/cloudnative/examples-ansible.git
+        Website URL:  https://github.com/cloudnative/examples-ansible
     
 You can now use any of the examples below when creating a build pipeline.
 
@@ -31,12 +29,12 @@ To use:
 1.  Select either an Ubuntu or Amazon Linux base AMI
 1.  Select the Git Repository you added earlier, and use the following
 
-    Path or Ansible playbook: `hello-world.yml`
+        Path or Ansible playbook:  hello-world.yml
     
-1.  Click _Create Pipeline_ and the _Bake an AMI_
+1.  Click __Create Pipeline__ and the __Bake an AMI__
 1.  Once the AWS resources launch, you will see Ansible installed, and the `hello-world` playbook executed.
 
-That's it. You can now launch 1 or 100s of EC2 instances with your new AMI. (We don't event recommend 10s of instances for this particular example).
+That's it. You can now launch 1 or 100s of EC2 instances with your new AMI. (We don't even recommend 10s of instances for this particular example).
 
 
 ## About the Bakery
