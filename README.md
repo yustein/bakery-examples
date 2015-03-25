@@ -1,5 +1,7 @@
 # Bakery Examples
 
+[![Join the chat at https://gitter.im/cloudnative/bakery-examples](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cloudnative/bakery-examples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Here you will find examples illustrating how to use the [Bakery from CloudNative](https://cloudnative.io/).
 
 
