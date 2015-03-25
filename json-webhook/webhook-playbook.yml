@@ -1,0 +1,9 @@
+---
+  # An Ansible playbook demonstrating how to use the Bakery JSON webhook
+  - hosts: all
+    sudo: true
+    vars_files:
+      - [ /tmp/bakery/webhook.yml, vars/defaults.yml ]
+    roles:
+      - { role: getcode, tags: ['getcode'] }
+      - { role: getartifact, tags: ['getartifact'] }

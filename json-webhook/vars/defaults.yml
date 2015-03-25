@@ -1,0 +1,9 @@
+---
+  build:
+    scm:
+      url: "https://github.com/cloudnative/bakery-examples.git"
+      branch: "origin/master"
+      commit: "master"
+    artifacts:
+      my-app.compiled.txt:
+        s3: s3://cloudnative-examples/bakery/my-app.compiled.txt

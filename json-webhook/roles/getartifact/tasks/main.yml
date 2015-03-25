@@ -1,0 +1,26 @@
+---
+  - name: Install pip (APT version)
+    apt:
+      pkg: python-pip
+      state: latest
+    when: ansible_os_family == 'Debian'
+
+  - name: Install pip (YUM version)
+    yum:
+      pkg: python-pip
+      state: latest
+    when: ansible_os_family == 'RedHat'
+
+  - name: Install the AWS CLI tools
+    pip:
+      name: awscli
+      state: latest
+
+  - name: "DEBUG: This is what the next play is going to do"
+    debug:
+      msg: "I am going to download '{{ build['artifacts']['my-app.compiled.txt']['s3'] }}' from S3 using the AWS credentials from the IAM Role/Instance Profile"
+
+  - name: Download artifact from S3
+    command: aws s3 cp {{ build['artifacts']['my-app.compiled.txt']['s3'] }} /tmp/my-app.compiled.txt
+
+  # If you prefer, use the S3 Ansible module rather than the AWS CLI.

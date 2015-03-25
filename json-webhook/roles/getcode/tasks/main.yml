@@ -1,0 +1,23 @@
+---
+  - name: Install git (APT version)
+    apt:
+      pkg: git
+      state: latest
+    when: ansible_os_family == 'Debian'
+
+  - name: Install git (YUM version)
+    yum:
+      pkg: git
+      state: latest
+    when: ansible_os_family == 'RedHat'
+
+  - name: "DEBUG: This is what the next play is going to do"
+    debug:
+      msg: "I am going to get '{{ build['scm']['commit'] }}' from the '{{ build['scm']['url'] }}' repository"
+
+  - name: Get the code from the git repo
+    git:
+      repo: "{{ build['scm']['url'] }}"
+      dest: /var/www/myapp
+      version: "{{ build['scm']['commit'] }}"
+      accept_hostkey: yes
