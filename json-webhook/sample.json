@@ -1,0 +1,16 @@
+{
+  "name": "curl",
+  "build": {
+    "status": "success",
+    "scm": {
+      "url": "https://github.com/cloudnative/bakery-examples.git",
+      "branch": "origin/master",
+      "commit": "c652b7236d2267319f8352fef28165af9885b051"
+    },
+    "artifacts": {
+      "my-app.compiled.txt": {
+        "s3": "s3://cloudnative-examples/bakery/my-app.compiled.txt"
+      }
+    }
+  }
+}
