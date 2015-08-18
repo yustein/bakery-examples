@@ -1,0 +1,18 @@
+[program:{{ webapp_name }}]
+process_name=%(program_name)s_%(process_num)02d
+directory={{ code_dir }}
+user={{ code_user }}
+environment={% for key, value in env_vars[env].items() -%}
+{{ key }}='{{ value }}',
+{%- endfor -%}HOME='/home/{{ code_user }}'
+command=/usr/bin/node {{ code_entry_file }}
+autostart=true
+autorestart=true
+numprocs=1
+startsecs=20
+startretries=3
+exitcodes=0
+stopsignal=TERM
+redirect_stderr=true
+stdout_logfile = /var/log/supervisor/{{ webapp_name }}.log
+stdout_syslog=true

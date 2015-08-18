@@ -1,0 +1,64 @@
+---
+  - include_vars: "{{ ansible_distribution }}.yml"
+
+  - name: Create directory for the code to live in
+    file:
+      dest: /var/www
+      state: directory
+      owner: "{{ code_user }}"
+      group: "{{ code_user }}"
+      mode: 0755
+
+  - name: Get the code from our Git repository
+    git:
+      repo: "{{ code_git_repo }}"
+      dest: "{{ code_dir }}"
+      version: "{{ vcs_revision }}"
+      accept_hostkey: yes
+    sudo: yes
+    sudo_user: "{{ code_user }}"
+    register: code
+
+  - name: Install node packages using NPM
+    npm:
+      path: "{{ code_dir }}"
+    sudo: yes
+    sudo_user: "{{ code_user }}"
+
+  - name: See if there is a bower.json file
+    stat:
+      path: "{{ code_dir }}/bower.json"
+    register: bower_config
+
+  - name: Install bower packages
+    shell: bower install
+    args:
+      chdir: "{{ code_dir }}"
+    sudo: yes
+    sudo_user: "{{ code_user }}"
+    when: bower_config.stat.exists == True
+
+  - name: Copy over supervisor script
+    template:
+      src: webapp_supervisor.ini.j2
+      dest: "{{ supervisor_webapp_config_path }}"
+      owner: root
+      group: root
+      mode: 0444
+    notify: restart supervisor
+
+  - name: Copy over web app nginx configuration
+    template:
+      src: webapp_nginx.conf.j2
+      dest: "{{ webapp_nginx_config_path }}"
+      group: root
+      owner: root
+    notify: restart nginx
+
+  - name: Enable web app for nginx
+    file:
+      src: "{{ webapp_nginx_config_path }}"
+      dest: "/etc/nginx/sites-enabled/{{ webapp_name }}"
+      state: link
+    when: ansible_distribution == 'Ubuntu'
+    notify: restart nginx

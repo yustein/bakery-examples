@@ -1,0 +1,45 @@
+---
+  # HACK! Because Amazon Linux has massive issues with Python:
+  #   https://forums.aws.amazon.com/message.jspa?messageID=610625
+  # we need to install supervisor again here using pip
+
+  - name: Install Supervisor
+    pip:
+      name: supervisor
+      state: latest
+    when: ansible_distribution == 'Amazon'
+
+  - name: Copy over supervisor config
+    copy:
+      src: supervisord.conf
+      dest: /etc/supervisord.conf
+      owner: root
+      group: root
+      mode: 0444
+    when: ansible_distribution == 'Amazon'
+
+  - name: Create supervisor config directory
+    file:
+      dest: /etc/supervisor/conf.d
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+    when: ansible_distribution == 'Amazon'
+
+  - name: Enable supervisor service
+    service:
+      name: "{{ supervisor_service_name }}"
+      enabled: yes
+
+  - name: Starting supervisor service
+    service:
+      name: "{{ supervisor_service_name }}"
+      state: started
+    when: not_ami_build
+
+  - name: Stopping supervisor service
+    service:
+      name: "{{ supervisor_service_name }}"
+      state: stopped
+    when: ami_build

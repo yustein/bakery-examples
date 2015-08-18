@@ -1,0 +1,30 @@
+---
+  # This is the Linux User your NodeJS code will be owned by
+  - name: Create the user web
+    user:
+      name: web
+      comment: "Web User"
+      uid: 15001
+      shell: /bin/bash
+      state: present
+
+  - name: Secure web's home directory
+    file:
+      dest: /home/web
+      state: directory
+      owner: web
+      group: web
+      mode: 0711
+
+  - name: Create web's .ssh directory
+    file:
+      dest: /home/web/.ssh
+      state: directory
+      owner: web
+      group: web
+      mode: 0700
+
+  - name: Add web's private SSH key
+    debug:
+      msg: 'NOTE: This is where you would copy your Deploy Key needed to clone a private git repository'
+

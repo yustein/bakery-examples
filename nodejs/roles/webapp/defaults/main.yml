@@ -1,0 +1,30 @@
+---
+  # Name of your web application
+  # Don't use spaces or special characters here, only alphanumeric
+  webapp_name: webapp
+
+  # The location of the code live on the web server
+  code_dir: /var/www
+
+  # The URL to the Git repository containing your web app's code. This will be
+  # cloned to { code_dir }
+  code_git_repo: https://github.com/heroku/node-js-sample.git
+
+  # The Linux User that should own the code
+  code_user: web
+
+  # The node file that starts your web app
+  code_entry_file: index.js
+
+  # The environment to run in
+  env: production
+
+  # List of environment variables
+  env_vars:
+    staging:
+      NODE_ENV: staging
+    production:
+      NODE_ENV: production
+
+  # The port the NodeJS web app is running on
+  node_port: 5000

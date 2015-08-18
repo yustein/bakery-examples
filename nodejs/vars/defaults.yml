@@ -1,0 +1,4 @@
+---
+  # Default git version to clone. This gets replace when integrating the
+  # Bakery with CircleCI
+  vcs_revision: master

@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+
+server {
+  listen 80;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_redirect off;
+
+    proxy_pass http://localhost:{{ node_port }};
+  }
+}

@@ -1,0 +1,6 @@
+---
+  # Handy helper variables to detect if an AMI is being built or not. This
+  # allows us to set flag to be able to reuse the same Ansible playbook on both
+  # running instances and Bakery
+  ami_build: ami is defined and ami
+  not_ami_build: ami is not defined or not ami
