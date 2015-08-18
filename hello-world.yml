@@ -10,7 +10,7 @@
       - name: Install Apache2 (apt version)
         apt: pkg=apache2 state=latest
         when: ansible_distribution == 'Ubuntu'
-          
+
       - name: Install Apache2 web server (yum version)
         yum: name=httpd24 state=latest
         when: ansible_distribution == 'Amazon'
