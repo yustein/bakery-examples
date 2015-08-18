@@ -1,0 +1,29 @@
+---
+  - name: Install Node JS so there is a JavaScript runtime for Rails (APT version)
+    apt:
+      pkg: "{{ item }}"
+      state: latest
+    with_items:
+      - nodejs
+      - nodejs-legacy
+      - npm
+    when: ansible_os_family == 'Debian'
+
+  - name: Install Node JS so there is a JavaScript runtime for Rails (yum version)
+    yum:
+      pkg: "{{ item }}"
+      state: latest
+      enablerepo: epel
+    with_items:
+      - nodejs
+      - npm
+    when: ansible_os_family == 'RedHat'
+
+  - name: Install gulp and bower
+    npm:
+      name: "{{ item }}"
+      state: present
+      global: yes
+    with_items:
+      - gulp
+      - bower

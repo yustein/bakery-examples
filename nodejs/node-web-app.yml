@@ -1,0 +1,15 @@
+---
+# Example NodeJS web application playbook
+- name: NodeJsWebApp
+  sudo: True
+  hosts: all
+  roles:
+    - { role: base, tags: ['base'] }
+    - { role: update_packages, tags: ['update_packages'] }
+    - { role: web_user, tags: ['web_user'] }
+    - { role: nodejs, tags: ['nodejs'] }
+    - { role: nginx, tags: ['nginx'] }
+    - { role: webapp, tags: ['webapp'] }
+  vars_files:
+    - vars/common.yml
+    - [ /tmp/ci/bakery_payload.yml, vars/defaults.yml ]

@@ -1,0 +1,4 @@
+---
+  ntp_service_name: ntp
+  ssh_service_name: ssh
+  supervisor_service_name: supervisor

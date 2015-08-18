@@ -1,0 +1,12 @@
+---
+  - name: restart supervisor
+    service:
+      name: "{{ supervisor_service_name }}"
+      state: restarted
+    when: not_ami_build
+
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+    when: not_ami_build

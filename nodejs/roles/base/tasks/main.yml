@@ -1,0 +1,12 @@
+---
+  # Main task list for Base
+
+  - include_vars: "{{ ansible_distribution }}.yml"
+
+  - include: packages-repo-setup.yml
+  - include: harden-basic.yml
+  - include: packages-system.yml
+  - include: packages-security.yml
+  - include: packages-editors.yml
+  - include: packages-networking.yml
+  - include: supervisor.yml

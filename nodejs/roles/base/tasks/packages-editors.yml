@@ -1,0 +1,20 @@
+---
+  # Install everyone's favorite editors
+
+  - name: Install editor packages (apt version)
+    apt: pkg={{ item }} state=latest
+    with_items:
+      - emacs23-nox
+      - emacs23-el
+      - nano
+      - vim
+    when: ansible_os_family == 'Debian'
+
+  - name: Install editors packages (yum version)
+    yum: pkg={{ item }} state=latest
+    with_items:
+      - emacs
+      - emacs-el
+      - vim-enhanced
+    when: ansible_os_family == 'RedHat'
+

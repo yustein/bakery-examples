@@ -1,0 +1,43 @@
+---
+  - name: Install nginx
+    apt:
+      pkg: nginx-full
+      state: latest
+    when: ansible_distribution == 'Ubuntu'
+
+  - name: Install nginx
+    yum:
+      pkg: nginx
+      state: latest
+    when: ansible_distribution == 'Amazon'
+
+  - name: Ensure the default site is removed
+    file:
+      path: "/etc/nginx/sites-{{ item }}/default"
+      state: absent
+    with_items:
+      - enabled
+      - available
+    when: ansible_distribution == 'Ubuntu'
+    notify: restart nginx
+
+  - name: Ensure nginx is configured
+    copy:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+      owner: root
+      group: root
+      mode: 0444
+    when: ansible_distribution == 'Amazon'
+    notify: restart nginx
+
+  - name: Make sure nginx is started on boot
+    service: name=nginx enabled=yes
+
+  - name: Starting nginx
+    service: name=nginx state=started
+    when: not_ami_build
+
+  - name: Stopping nginx
+    service: name=nginx state=stopped
+    when: ami_build

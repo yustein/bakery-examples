@@ -1,0 +1,53 @@
+---
+  # Install some helpful system packages
+
+  - name: Install system packages (apt version)
+    apt:
+      pkg: "{{ item }}"
+      state: latest
+    with_items:
+      - git-core
+      - less
+      - perl
+      - perl-modules
+      - python
+      - python-support
+      - python-pip
+      - sudo
+      - supervisor
+      - sysstat
+      - unzip
+      - xfsprogs
+      - zip
+    when: ansible_os_family == 'Debian'
+
+  - name: Install system packages (yum version)
+    yum:
+      pkg: "{{ item }}"
+      state: latest
+      enablerepo: epel
+    with_items:
+      - git
+      - less
+      - perl
+      - python27
+      - python27-pip
+      - supervisor
+      - sudo
+      - unzip
+      - xfsprogs
+      - zip
+    when: ansible_os_family == 'RedHat'
+
+  - name: Install AWS CLI
+    pip:
+      name: awscli
+      state: latest
+
+  - name: Get cloud-init to manage hosts file
+    lineinfile:
+      dest: /etc/cloud/cloud.cfg
+      state: present
+      line: 'manage_etc_hosts: True'
+      regexp: '^manage_etc_hosts\: True'
+      insertafter: '^preserve_hostname'

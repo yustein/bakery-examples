@@ -1,0 +1,4 @@
+---
+  supervisor_service_name: supervisor
+  supervisor_webapp_config_path: "/etc/supervisor/conf.d/{{ webapp_name }}.conf"
+  webapp_nginx_config_path: "/etc/nginx/sites-available/{{ webapp_name }}.conf"
