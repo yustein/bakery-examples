@@ -2,6 +2,10 @@
   - name: Hello World
     sudo: True
     hosts: all
+    vars:
+    multiline: |
+       Hello AWS!
+       
     tasks:
       - name: Update APT cache
         apt: update_cache=yes
@@ -16,4 +20,6 @@
         when: ansible_distribution == 'Amazon'
         
       - name: copy index file
-        copy: content="Hello AWS!" dest=/var/www/html/index.html owner=root group=root mode=0644
+        copy: 
+            content: "{{multiline}}" 
+            dest: /var/www/html/index.html owner=root group=root mode=0644
