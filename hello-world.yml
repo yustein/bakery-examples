@@ -14,3 +14,5 @@
       - name: Install Apache2 web server (yum version)
         yum: name=httpd24 state=latest
         when: ansible_distribution == 'Amazon'
+      - name: copy index file
+        copy: content="Hello AWS!" dest=/var/www/html/index.html owner=www group=www mode=0644
