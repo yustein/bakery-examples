@@ -16,4 +16,4 @@
         when: ansible_distribution == 'Amazon'
         
       - name: copy index file
-        copy: content="Hello AWS!" dest=/var/www/html/index.html owner=www group=www mode=0644
+        copy: content="Hello AWS!" dest=/var/www/html/index.html owner=root group=root mode=0644
