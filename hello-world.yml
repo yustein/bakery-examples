@@ -3,9 +3,9 @@
     sudo: True
     hosts: all
     vars:
-    multiline: |
-       Hello AWS!
-       
+      multiline: |
+         Hello AWS!
+        
     tasks:
       - name: Update APT cache
         apt: update_cache=yes
