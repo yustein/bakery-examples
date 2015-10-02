@@ -23,4 +23,4 @@
       - name: copy index file
         copy: 
             content: "{{multiline}}" 
-            dest: /var/www/html/index.html owner=root group=root mode=0644
+            dest: /var/www/html/index.html
